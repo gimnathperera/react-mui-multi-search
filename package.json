@@ -7,8 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
     "prepare": "husky install"
   },
   "dependencies": {
