@@ -26,6 +26,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install --frozen-lockfile
+      - name: Debug NPM_AUTH_TOKEN
+        run: echo $NPM_AUTH_TOKEN
 
       - name: Create Release Pull Request or Publish
         id: changesets
