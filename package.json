@@ -2,6 +2,13 @@
   "name": "react-mui-multi-search",
   "private": false,
   "version": "0.0.1",
+  "description": "react-mui-multi-search is a higly customizable React MUI multi search component",
+  "author": "Gimnath-Perera",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Gimnath-Perera/react-mui-multi-search.git"
+  },
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -28,7 +35,8 @@
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
     "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "npm run check-format && npm run check-lint && npm run check-types && npm run build && changeset publish"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -42,6 +50,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
