@@ -3,11 +3,11 @@
   "private": false,
   "version": "0.0.1",
   "description": "react-mui-multi-search is a higly customizable React MUI multi search component",
-  "author": "Gimnath-Perera",
+  "author": "gimnathperera",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gimnath-Perera/react-mui-multi-search.git"
+    "url": "https://github.com/gimnathperera/react-mui-multi-search.git"
   },
   "type": "module",
   "main": "dist/index.umd.js",
