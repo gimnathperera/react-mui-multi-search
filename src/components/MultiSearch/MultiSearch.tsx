@@ -31,6 +31,11 @@ export const MultiSearch: React.FC<Props> = ({
   }, [onPrint]);
 
   const handleAddFilterByParam = useCallback(({ filterKey, filterValue }: FilteredBy) => {
+    const filterExists = searchParams.find(
+      param => param.key === filterKey && param.value === filterValue,
+    );
+    if (filterExists) return;
+
     setSearchParams(prevSearchParams => [
       ...prevSearchParams,
       { key: filterKey, value: filterValue },
@@ -74,11 +79,11 @@ export const MultiSearch: React.FC<Props> = ({
           </StyledIconButton>
         </SearchBarContainer>
       </Grid>
-      {searchParams.length > 0 && (
+      {searchParams.length > 0 ? (
         <Grid item xs={12}>
           <AppliedFilters searchParams={searchParams} onDelete={handleRemoveSearchParam} />
         </Grid>
-      )}
+      ) : null}
     </Grid>
   );
 };
