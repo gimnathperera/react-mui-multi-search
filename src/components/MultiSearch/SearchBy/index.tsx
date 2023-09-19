@@ -2,15 +2,16 @@ import React, { useState, useCallback } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { SelectChangeEvent } from '@mui/material/Select';
 import SearchIcon from '@mui/icons-material/Search';
-import { SearchInput, StyledIconButton } from './index.styles';
 import { SearchedBy, SelectOption } from '../types';
+import { StyledSelect } from '../index.styles';
+import { SearchInput, StyledIconButton } from './index.styles';
 
 interface Props {
   searchOptions: SelectOption[];
-  onSearchBy: (searchBy: SearchedBy) => void;
   placeholder?: string;
+  onSearchBy: (searchBy: SearchedBy) => void;
 }
 
 const SearchBy: React.FC<Props> = ({ searchOptions, placeholder, onSearchBy }) => {
@@ -19,8 +20,8 @@ const SearchBy: React.FC<Props> = ({ searchOptions, placeholder, onSearchBy }) =
   );
   const [searchValue, setSearchValue] = useState<string>('');
 
-  const handleSearchKeyChange = useCallback((event: SelectChangeEvent): void => {
-    setSelectedSearchKey(event.target.value);
+  const handleSearchKeyChange = useCallback((event: SelectChangeEvent<unknown>): void => {
+    setSelectedSearchKey(String(event.target.value));
   }, []);
 
   const handleSearchValueChange = useCallback(
@@ -55,7 +56,7 @@ const SearchBy: React.FC<Props> = ({ searchOptions, placeholder, onSearchBy }) =
 
       <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
         <InputLabel id='search-select-label'>Search By</InputLabel>
-        <Select
+        <StyledSelect
           labelId='search-select-label'
           value={selectedSearchKey}
           label='Search By'
@@ -69,7 +70,7 @@ const SearchBy: React.FC<Props> = ({ searchOptions, placeholder, onSearchBy }) =
               {key}
             </MenuItem>
           ))}
-        </Select>
+        </StyledSelect>
       </FormControl>
     </>
   );

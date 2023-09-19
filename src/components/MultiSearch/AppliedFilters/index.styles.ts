@@ -3,13 +3,13 @@ import { Box, Chip } from '@mui/material';
 
 export const ChipContainer = styled(Box)(() => ({
   display: 'flex',
-  gap: '8px',
+  gap: '0.5rem',
   flexWrap: 'wrap',
 }));
 
 export const FilterChip = styled(Chip)(() => ({
   background: '#fff',
-  borderRadius: 16,
-  border: '1px solid #DADCE0',
+  borderRadius: '1rem',
+  border: '0.0625rem solid #DEEEFF',
   color: '#001F3D',
 }));

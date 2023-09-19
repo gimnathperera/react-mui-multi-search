@@ -1,16 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import {
-  Button,
-  FormControl,
-  MenuItem,
-  Popover,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material';
+import { FormControl, MenuItem, Popover, SelectChangeEvent, Typography } from '@mui/material';
 import TuneIcon from '@mui/icons-material/Tune';
 import { FilterButton, FilterContainer } from './index.styles';
 import { Filter, FilteredBy, SelectOption } from '../types';
+import { StyledButton, StyledSelect } from '../index.styles';
 
 interface Props {
   filters: Filter[];
@@ -35,7 +28,7 @@ const FilterBy: React.FC<Props> = ({ filters, onFilterBy }) => {
   }, []);
 
   const handleFilterKeyChange = useCallback(
-    (event: SelectChangeEvent): void => {
+    (event: SelectChangeEvent<unknown>): void => {
       const selectedValue = event.target.value;
       const selectedFilter = filters.find(({ filterKey }) => filterKey.value === selectedValue);
       setSelectedFilter(selectedFilter || null);
@@ -43,8 +36,10 @@ const FilterBy: React.FC<Props> = ({ filters, onFilterBy }) => {
     [filters],
   );
 
-  const handleFilterValueChange = useCallback((event: SelectChangeEvent): void => {
-    setFilterValue(event.target.value);
+  const handleFilterValueChange = useCallback((event: SelectChangeEvent<unknown>): void => {
+    const selectedValue = event.target.value;
+
+    setFilterValue(String(selectedValue));
   }, []);
 
   const handleOnFilterByClick = useCallback((): void => {
@@ -75,12 +70,20 @@ const FilterBy: React.FC<Props> = ({ filters, onFilterBy }) => {
           vertical: 'bottom',
           horizontal: 'left',
         }}
+        PaperProps={{
+          style: {
+            marginTop: '8px',
+            border: '1px solid #DEEEFF',
+            borderRadius: 16,
+            boxShadow: '3px -5px 40px rgba(59, 59, 63, 0.09151)',
+          },
+        }}
       >
         <FilterContainer>
           <Typography variant='body1'>Filter results with</Typography>
 
           <FormControl sx={{ mt: 1 }} size='small'>
-            <Select
+            <StyledSelect
               labelId='filter-key-label'
               id='filter-key-select'
               value={selectedFilter ? selectedFilter.filterKey.value : ''}
@@ -91,11 +94,11 @@ const FilterBy: React.FC<Props> = ({ filters, onFilterBy }) => {
                   {filterKey.key}
                 </MenuItem>
               ))}
-            </Select>
+            </StyledSelect>
           </FormControl>
 
           <FormControl size='small'>
-            <Select
+            <StyledSelect
               labelId='filter-value-label'
               id='filter-value-select'
               value={filterValue}
@@ -107,12 +110,12 @@ const FilterBy: React.FC<Props> = ({ filters, onFilterBy }) => {
                   {key}
                 </MenuItem>
               ))}
-            </Select>
+            </StyledSelect>
           </FormControl>
 
-          <Button variant='contained' size='small' onClick={handleOnFilterByClick}>
+          <StyledButton variant='contained' size='small' onClick={handleOnFilterByClick}>
             Apply filter
-          </Button>
+          </StyledButton>
         </FilterContainer>
       </Popover>
     </>
