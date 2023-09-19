@@ -12,6 +12,7 @@ interface Props {
   searchOptions: SelectOption[];
   filterOptions?: Filter[];
   onPrint?: () => void;
+  onSearch?: (searchBy: SearchParam[]) => void;
 }
 
 export const MultiSearch: React.FC<Props> = ({
@@ -19,15 +20,12 @@ export const MultiSearch: React.FC<Props> = ({
   searchOptions,
   filterOptions = [],
   onPrint,
+  onSearch,
 }): JSX.Element => {
   const [searchParams, setSearchParams] = useState<SearchParam[]>([]);
 
-  const handlePrintButtonClick = useCallback(() => {
-    if (onPrint) {
-      onPrint();
-    } else {
-      window.print();
-    }
+  const handleOnPrint = useCallback(() => {
+    if (onPrint) onPrint();
   }, [onPrint]);
 
   const handleAddFilterByParam = useCallback(({ filterKey, filterValue }: FilteredBy) => {
@@ -43,10 +41,10 @@ export const MultiSearch: React.FC<Props> = ({
   }, []);
 
   const handleAddSearchByParam = useCallback(({ searchKey, searchValue }: SearchedBy) => {
-    setSearchParams(prevSearchParams => [
-      ...prevSearchParams,
-      { key: searchKey, value: searchValue },
-    ]);
+    const newSearchParams = [...searchParams, { key: searchKey, value: searchValue }];
+    setSearchParams(newSearchParams);
+
+    if (onSearch) onSearch(newSearchParams);
   }, []);
 
   const handleRemoveSearchParam = useCallback((paramToRemove: SearchParam) => {
@@ -59,12 +57,12 @@ export const MultiSearch: React.FC<Props> = ({
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <SearchBarContainer>
-          {filterOptions.length > 0 && (
+          {filterOptions?.length > 0 ? (
             <>
               <FilterBy filters={filterOptions} onFilterBy={handleAddFilterByParam} />
               <StyledDivider orientation='vertical' />
             </>
-          )}
+          ) : null}
 
           <SearchBy
             searchOptions={searchOptions}
@@ -72,11 +70,15 @@ export const MultiSearch: React.FC<Props> = ({
             onSearchBy={handleAddSearchByParam}
           />
 
-          <StyledDivider orientation='vertical' />
+          {onPrint ? (
+            <>
+              <StyledDivider orientation='vertical' />
 
-          <StyledIconButton onClick={handlePrintButtonClick}>
-            <IosShareOutlinedIcon />
-          </StyledIconButton>
+              <StyledIconButton onClick={handleOnPrint}>
+                <IosShareOutlinedIcon />
+              </StyledIconButton>
+            </>
+          ) : null}
         </SearchBarContainer>
       </Grid>
       {searchParams.length > 0 ? (
