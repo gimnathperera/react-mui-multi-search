@@ -1,5 +1,11 @@
 # @gimnathperera/react-mui-multi-search
 
+## 0.1.2
+
+### Patch Changes
+
+- 72bce34: fix base-level styles
+
 ## 0.1.1
 
 ### Patch Changes
