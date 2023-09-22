@@ -54,7 +54,25 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check if version has changed
+        id: version_check
+        run: |
+          previous_version=$(jq -r '.version' package.json)
+          npm install --no-save
+          current_version=$(jq -r '.version' package.json)
+          if [ "$previous_version" != "$current_version" ]; then
+            echo "Version has changed. Proceeding with npm publish."
+            echo "::set-output name=version_changed::true"
+          else
+            echo "Version has not changed. Skipping npm publish."
+            echo "::set-output name=version_changed::false"
+          fi
+        shell: bash
+        env:
+          PREVIOUS_VERSION: ${{ steps.changesets.outputs.version }}
+
       - name: Publish to GitHub Packages
+        if: steps.version_check.outputs.version_changed == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
