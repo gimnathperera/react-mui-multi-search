@@ -1,5 +1,11 @@
 # @gimnathperera/react-mui-multi-search
 
+## 1.1.0
+
+### Minor Changes
+
+- e5f8bda: doc and usage updated
+
 ## 1.0.0
 
 ### Major Changes
