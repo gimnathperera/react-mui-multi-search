@@ -1,5 +1,11 @@
 # @gimnathperera/react-mui-multi-search
 
+## 1.0.0
+
+### Major Changes
+
+- 10492f0: prop types added
+
 ## 0.1.2
 
 ### Patch Changes
