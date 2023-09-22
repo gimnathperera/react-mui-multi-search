@@ -1,7 +1,7 @@
 <div>
   <h1>@gimnathperera/react-mui-multi-search</h1>
 
-> 🎯 Unlock the power of Material-UI version 5 with our sleek React component and npm package! Experience effortless, multi-faceted search and filtering capabilities like never before.
+🎯 Unlock the power of Material-UI version 5 with our sleek React component and npm package! Experience effortless, multi-faceted search and filtering capabilities like never before.
 
 ![MultiSelect GIF](public/usage.gif)
 
@@ -60,7 +60,7 @@ pnpm i @gimnathperera/react-mui-multi-search
 import {MultiSearch} from '@gimnathperera/react-mui-multi-search';
 
 
-<TableFilterBar
+<MultiSearch
   placeholder='Search public users'
   searchOptions={[
     { key: 'Name', value: 'name' },
