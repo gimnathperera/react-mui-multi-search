@@ -42,14 +42,10 @@ You can suggest new features [here](https://github.com/gimnathperera/react-mui-m
 ```bash
 # npm
 npm i @gimnathperera/react-mui-multi-search
-
 or
-
 # yarn
 yarn add @gimnathperera/react-mui-multi-search
-
 or
-
 # pnpm
 pnpm i @gimnathperera/react-mui-multi-search
 ```
@@ -85,7 +81,11 @@ import {MultiSearch} from '@gimnathperera/react-mui-multi-search';
       ],
       filterType: 'SELECT',
     },
+
   ]}
+  onSearch={(searchText, filters) => {
+    console.log(searchText, filters);
+  }}
 />
 ```
 
@@ -149,7 +149,7 @@ Contributions are welcome! If you have any ideas, bug reports, or feature reques
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 #
 
