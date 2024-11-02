@@ -47,7 +47,7 @@ or
 yarn add @gimnathperera/react-mui-multi-search
 or
 # pnpm
-pnpm i @gimnathperera/react-mui-multi-search
+pnpm add @gimnathperera/react-mui-multi-search
 ```
 
 ## Usage
